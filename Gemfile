@@ -20,6 +20,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'rails-erd'
 end
 
 # Use jquery as the JavaScript library
