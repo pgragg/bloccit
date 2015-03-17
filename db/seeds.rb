@@ -1,6 +1,15 @@
  require 'faker'
+
+
+ #Posts creation assignment 
+
+p = Post.find_or_create_by(title: 'Unique Post Title', body: 'Unique post body!')
  
  # Create Posts
+
+
+
+
  50.times do
    Post.create!(
      title:  Faker::Lorem.sentence,
