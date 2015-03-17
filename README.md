@@ -7,6 +7,8 @@ application up and running.
 
 Made with my mentor at [Bloc](http://bloc.io).
 
+The project is on Heroku: it's called [pipergragg-bloccit](pipergragg-bloccit.herokuapp.com). 
+
 Things you may want to cover:
 
 * Ruby version
