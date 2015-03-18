@@ -4,6 +4,7 @@
  #Posts creation assignment 
 
 p = Post.find_or_create_by(title: 'Unique Post Title', body: 'Unique post body!')
+a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Unique AD Copy!', price: 450)
  
  # Create Posts
 
