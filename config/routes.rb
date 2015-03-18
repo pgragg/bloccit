@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  get 'welcome/index'
-  get 'welcome/contact'
-  get 'welcome/about'
+  resources :posts 
+
+  get 'contact' => 'welcome#contact' 
+  get 'about' => 'welcome#about' # allowing a user to type /about rather than /welcome/about.
 
   root to: 'welcome#index'
 
