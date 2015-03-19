@@ -1,5 +1,6 @@
  require 'faker'
-
+Post.delete_all
+Comment.delete_all
 
  #Posts creation assignment 
 
@@ -10,8 +11,8 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
 
 
 
+ 5.times do
 
- 50.times do
    Post.create!(
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
@@ -20,7 +21,7 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  posts = Post.all
  
  # Create Comments
- 100.times do
+ 10.times do
    Comment.create!(
      post: posts.sample,
      body: Faker::Lorem.paragraph
@@ -30,3 +31,4 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
+ puts "#{Advertisement.count} comments created"
