@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :advertisements 
 
-  resources :posts 
+  resources :posts
 
   get 'contact' => 'welcome#contact' 
   get 'about' => 'welcome#about' # allowing a user to type /about rather than /welcome/about.
