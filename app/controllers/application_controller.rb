@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_action :flash_attack
+  #before_action :flash_attack
 
 
-  protect_from_forgery with: :exception
+   protect_from_forgery with: :exception
    before_action :configure_permitted_parameters, if: :devise_controller?
  
    protected
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
     private
  
-  def flash_attack
-    flash[:error] = "Flash Attack!"
-  end
+  # def flash_attack
+  #   flash[:error] = "Flash Attack!"
+  # end
 end
