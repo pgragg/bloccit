@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    authorize @posts 
   end
 
   def show
@@ -13,14 +14,17 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    authorize @post #authorize method comes from Pundit in the ApplicationController. 
   end
 
   def edit
     @post = Post.find(params[:id])
+    authorize @post 
   end
 
   def update 
     @post = Post.find(params[:id])
+    authorize @post
     if @post.update_attributes(params.require(:post).permit(:title, :body))
       flash[:notice] = "Post was updated."
       redirect_to @post
@@ -34,6 +38,7 @@ class PostsController < ApplicationController
    #@post = Post.new(params.require(:post).permit(:title, :body))
    @post = Post.new(params.require(:post).permit(:title, :body))
    @post.user = current_user
+   authorize @post 
    if @post.save
      flash[:notice] = "Post was saved."
      redirect_to @post
