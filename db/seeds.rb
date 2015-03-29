@@ -1,4 +1,4 @@
- require 'faker'
+require 'faker'
 Post.delete_all
 Comment.delete_all
 
@@ -56,10 +56,27 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  user.skip_reconfirmation!
  user.update_attributes!(
    email: 'pipergragg@gmail.com',
-   password: '43214321'
+   password: '43214321',
+   role: 'user'
+ )
+ admin = User.last
+ user.skip_reconfirmation!
+ user.update_attributes!(
+   email: 'admin@gmail.com',
+   password: '43214321',
+   role: 'admin'
  )
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
  puts "#{Advertisement.count} comments created"
+ puts "Created the following users"
+ users.each do |user|
+  puts "#{user.name}'s role is #{user.role}, email: #{user.email}"
+ end 
+
+
+
+
+
