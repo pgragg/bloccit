@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   #skip_before_action :flash_attack, only: [:new, :index]
   def index
-    @posts = Post.all
-    authorize @posts 
+    @posts = policy_scope(Post)
   end
 
   def show

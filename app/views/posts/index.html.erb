@@ -3,6 +3,7 @@
 <%= link_to "Write a new post", new_post_path, class:'btn btn-success' %>
 <% end %>
 
+
 <% unless current_user == nil %>
   <% @posts.each do |post| %> 
       <div class="media">
