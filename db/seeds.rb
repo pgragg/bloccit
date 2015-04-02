@@ -1,10 +1,11 @@
 require 'faker'
 Post.delete_all
 Comment.delete_all
+User.delete_all #Deleting all your data before a reset is pretty much necessary. 
 
  #Posts creation assignment 
 
-p = Post.find_or_create_by(title: 'Unique Post Title', body: 'Unique post body!')
+
 a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Unique AD Copy!', price: 450)
  
 
@@ -36,9 +37,10 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  5.times do
 
    Post.create!(
-     user:   users.sample,
+    user:   users.sample,
      title:  Faker::Lorem.sentence,
      body:   Faker::Lorem.paragraph
+     
    )
  end
  posts = Post.all
@@ -52,16 +54,16 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
    )
  end
 
- user = User.first
- user.skip_reconfirmation!
- user.update_attributes!(
-   email: 'pipergragg@gmail.com',
+ me = User.first
+ me.skip_reconfirmation!
+ me.update_attributes!(
+   email: 'user@gmail.com',
    password: '43214321',
    role: 'user'
  )
  admin = User.last
- user.skip_reconfirmation!
- user.update_attributes!(
+ admin.skip_reconfirmation!
+ admin.update_attributes!(
    email: 'admin@gmail.com',
    password: '43214321',
    role: 'admin'

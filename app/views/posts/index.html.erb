@@ -3,19 +3,20 @@
 <%= link_to "Write a new post", new_post_path, class:'btn btn-success' %>
 <% end %>
 
-<% @posts.each do |post| %> 
-  <% if post.name %>
-    <div class="media">
-       <div class="media-body">
-         <h4 class="media-heading">
-           <%= link_to post.title, post %>
-         </h4>
-         <small>
-           submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %><br/>
-           <%= post.comments.count %> Comments
-         </small>
+<% unless current_user == nil %>
+  <% @posts.each do |post| %> 
+      <div class="media">
+         <div class="media-body">
+           <h4 class="media-heading">
+             <%= link_to post.title, post %>
+           </h4>
+           <small>
+
+             submitted <%= time_ago_in_words(post.created_at) %> ago by <%= post.user.name %><br/>
+             <%= post.comments.count %> Comments
+           </small>
+         </div>
        </div>
-     </div>
-    <%end%>
+  <% end %>
 <% end %>
 

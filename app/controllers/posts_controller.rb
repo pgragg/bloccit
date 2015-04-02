@@ -33,8 +33,7 @@ class PostsController < ApplicationController
 
  def create
    #@post = Post.new(params.require(:post).permit(:title, :body))
-   @post = Post.new(params.require(:post).permit(:title, :body))
-   @post.user = current_user
+   @post = current_user.posts.build(params.require(:post).permit(:title, :body))
    authorize @post 
    if @post.save
      flash[:notice] = "Post was saved."
