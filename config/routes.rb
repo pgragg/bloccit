@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+
   devise_for :users
   resources :advertisements 
 
   resources :topics do
-     resources :posts, except: [:index]
+     resources :posts, except: [:index] do
+      resources :summaries 
+    end 
    end
   get 'contact' => 'welcome#contact' 
   get 'about' => 'welcome#about' # allowing a user to type /about rather than /welcome/about.

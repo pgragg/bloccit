@@ -3,6 +3,7 @@ Post.delete_all
 Comment.delete_all
 User.delete_all #Deleting all your data before a reset is pretty much necessary. 
 Topic.delete_all 
+Summary.delete_all
  #Posts creation assignment 
 
 
@@ -52,6 +53,15 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
    )
  end
  posts = Post.all
+
+  51.times do
+
+   Summary.create!(
+    post:   posts.sample,
+    title:  Faker::Lorem.sentence,  
+   )
+ end
+ summaries = Summary.all
  
  # Create Comments
  10.times do

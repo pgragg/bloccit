@@ -1,6 +1,16 @@
 <h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<% if @summary != nil %>
+  <p>Summary: <%= @post.summary.title %></p>
+  <% if policy(Summary.new).edit? %> 
+    <%= link_to "Edit summary", edit_topic_post_summary_path(@topic,@post,@summary), class: 'btn btn-success' %> 
+  <% end %> 
+<% else %>
+  <% if policy(Summary.new).new? %>
+    <%= link_to "Summarize this post", new_topic_post_summary_path(@topic,@post,@summary), class: 'btn btn-success' %> 
+  <% end %> 
+<% end %>
 
 <% if policy(Post.new).edit? %> 
-<%= link_to "Edit", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %> 
+<%= link_to "Edit post", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %> 
 <% end %> 
-<p><%= @post.body %></p>
