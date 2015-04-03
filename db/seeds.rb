@@ -2,7 +2,7 @@ require 'faker'
 Post.delete_all
 Comment.delete_all
 User.delete_all #Deleting all your data before a reset is pretty much necessary. 
-
+Topic.delete_all 
  #Posts creation assignment 
 
 
@@ -29,7 +29,14 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  
  # The `save` method then saves this User to the database.
 
-
+ # Create Topics
+ 15.times do
+   Topic.create!(
+     name:         Faker::Lorem.sentence,
+     description:  Faker::Lorem.paragraph
+   )
+ end
+ topics = Topic.all
 
  # Create Posts
 
@@ -38,8 +45,9 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
 
    Post.create!(
     user:   users.sample,
-     title:  Faker::Lorem.sentence,
-     body:   Faker::Lorem.paragraph
+    topic: topics.sample,
+    title:  Faker::Lorem.sentence,
+    body:   Faker::Lorem.paragraph
      
    )
  end
@@ -57,25 +65,51 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  me = User.first
  me.skip_reconfirmation!
  me.update_attributes!(
-   email: 'user@gmail.com',
-   password: '43214321',
+   email: 'user@example.com',
+   password: 'helloworld',
    role: 'user'
  )
- admin = User.last
- admin.skip_reconfirmation!
- admin.update_attributes!(
-   email: 'admin@gmail.com',
-   password: '43214321',
-   role: 'admin'
+admin = User.new(
+   name:     'Admin User',
+   email:    'admin@example.com',
+   password: 'helloworld',
+   role:     'admin'
  )
+ admin.skip_confirmation!
+ admin.save!
+ 
+ # Create a moderator
+ moderator = User.new(
+   name:     'Moderator User',
+   email:    'moderator@example.com',
+   password: 'helloworld',
+   role:     'moderator'
+ )
+ moderator.skip_confirmation!
+ moderator.save!
+ 
+ # Create a member
+ member = User.new(
+   name:     'Member User',
+   email:    'member@example.com',
+   password: 'helloworld'
+ )
+ member.skip_confirmation!
+ member.save!
+
+ population = User.all
  
  puts "Seed finished"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
- puts "#{Advertisement.count} comments created"
+ puts "#{Advertisement.count} ads created"
  puts "Created the following users"
- users.each do |user|
-  puts "#{user.name}'s role is #{user.role}, email: #{user.email}"
+ population.each do |user|
+  print "#{user.name}'s email: #{user.email}."
+  if user.role != nil 
+    print "(**#{user.role}**)"
+  end 
+  puts ""
  end 
 
 
