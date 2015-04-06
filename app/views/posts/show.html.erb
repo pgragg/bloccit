@@ -1,5 +1,5 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
+<h1><%= markdown_to_html @post.title %></h1>
+<p><%= markdown_to_html @post.body %></p>
 <% if @summary != nil %>
   <p>Summary: <%= @post.summary.title %></p>
   <% if policy(Summary.new).edit? %> 
