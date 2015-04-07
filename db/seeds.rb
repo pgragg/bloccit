@@ -42,7 +42,7 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  # Create Posts
 
 
- 5.times do
+ 50.times do
 
    Post.create!(
     user:   users.sample,

@@ -1,6 +1,5 @@
- 
-
- <div class="col-md-8">
+<%= form_for topic do |f| %>
+<div class="col-md-8">
    <% if topic.errors.any? %>
      <div class="alert alert-danger">
        <h3>There are <%= pluralize(topic.errors.count, "error") %>.</h3> <!-- errors method checks topic based on validations in topic.rb --> 
@@ -11,7 +10,6 @@
        </ul>
      </div>
    <% end %>
-     <%= form_for topic do |f| %>
        <%= form_group_tag(topic.errors[:name]) do %>
          <%= f.label :name %>
          <%= f.text_field :name, class: 'form-control', placeholder: "Enter topic name" %>

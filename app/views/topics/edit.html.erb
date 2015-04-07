@@ -4,9 +4,9 @@
    <div class="col-md-4">
      <p>You're editing a topic? Crazy.</p>
      <ul>
-       <li>Editing a topic takes a sec. Wait before submitting.</li>
+       <li>Editing a topic requires page refresh. WTF?. <%= @topic.name %> </li>
      </ul>
    </div>
-     <%= render partial: 'form', locals: { topic: @topic} %>
-   </div>
+ <%= render partial: 'form', locals: { topic: @topic} %>
  </div>
+</div>
