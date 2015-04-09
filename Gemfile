@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
-
+#Letter opener : for quick emails. 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'redcarpet'
 ruby '2.1.2'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets

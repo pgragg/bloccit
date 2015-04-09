@@ -13,9 +13,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    
     @topic = Topic.find(params[:topic_id])
-    authorize @post #authorize method comes from Pundit in the ApplicationController. 
+     #authorize method comes from Pundit in the ApplicationController. 
+    @post = Post.new
+    authorize @post
   end
 
   def edit
@@ -39,8 +41,10 @@ class PostsController < ApplicationController
 
  def create
    @topic = Topic.find(params[:topic_id])
+
    #@post = Post.new(params.require(:post).permit(:title, :body))
    @post = current_user.posts.build(post_params)
+   @post.topic = @topic 
    authorize @post 
    if @post.save
      flash[:notice] = "Post was saved."
