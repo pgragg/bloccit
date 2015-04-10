@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 #Letter opener : for quick emails. 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'redcarpet'
 ruby '2.1.2'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -38,7 +37,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'figaro', '1.0'
-
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'fog'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
