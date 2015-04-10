@@ -1,4 +1,5 @@
  class UsersController < ApplicationController
+   require 'carrierwave/orm/activerecord'
    before_action :authenticate_user!
  
    def update
