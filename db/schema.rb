@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410140950) do
+ActiveRecord::Schema.define(version: 20150410152114) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string   "title"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150410140950) do
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "topic_id"
+    t.string   "image"
   end
 
   add_index "posts", ["summary_id"], name: "index_posts_on_summary_id"
@@ -60,6 +61,7 @@ ActiveRecord::Schema.define(version: 20150410140950) do
     t.text     "description"
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
+    t.string   "image"
   end
 
   create_table "users", force: :cascade do |t|

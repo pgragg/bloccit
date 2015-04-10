@@ -14,6 +14,8 @@ class Post < ActiveRecord::Base
   scope :ordered_by_reverse_created_at, -> { order('created_at ASC') }
   scope :ordered_by_title,              -> { order('title ASC') }
 
+  mount_uploader :image, ImageUploader
+
   def markdown_title
     render_as_markdown(title)
   end

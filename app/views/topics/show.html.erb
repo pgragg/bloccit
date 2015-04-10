@@ -1,4 +1,18 @@
- <h1><%= @topic.name %></h1>
+ 
+<div class="row text-center">
+</div>
+<div class="row text-center">
+  <h1><%= @topic.name %></h1>
+</div>
+<div class="row text-center">
+<% if @topic.image? %>
+  <div class="col-md-12 center">
+  <%= image_tag(@topic.image.full.url) %> 
+  </div>
+<% end %>
+
+</div>
+
  
  <% if policy(@topic).update? %>
    <%= link_to "Edit Topic", edit_topic_path(@topic), class: 'btn btn-success' %>
@@ -10,7 +24,14 @@
      <% @posts.each do |post| %>
        <div class="media">
          <div class="media-body">
+           <small>
+           <%= image_tag(post.user.avatar.small.url) if post.user.avatar? %>
+           submitted <%= time_ago_in_words(post.created_at) %> ago by
+           <%= post.user.name %><br>
+           <%= post.comments.count %> Comments
+          </small>
            <h4 class="media-heading">
+             <%= image_tag(post.image.small.url) if post.image? %>
              <%= link_to (post.markdown_title), [@topic, post]  %>
            </h4>
          </div>
@@ -23,9 +44,3 @@
      <% end %>
    </div>
  </div>
- <small>
-             <%= image_tag(post.user.avatar.tiny.url) if post.user.avatar? %>
-             submitted <%= time_ago_in_words(post.created_at) %> ago by
-             <%= post.user.name %><br>
-             <%= post.comments.count %> Comments
-           </small>
