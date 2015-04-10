@@ -34,26 +34,22 @@ ActiveRecord::Schema.define(version: 20150403135254) do
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
+    t.integer  "summary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
     t.integer  "topic_id"
-    t.integer  "summary_id"
   end
 
   add_index "posts", ["summary_id"], name: "index_posts_on_summary_id"
   add_index "posts", ["topic_id"], name: "index_posts_on_topic_id"
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
   create_table "summaries", force: :cascade do |t|
-    t.integer  "post_id"
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "title"
     t.integer  "topic_id"
   end
-
-  add_index "summaries", ["post_id"], name: "index_summaries_on_post_id"
 
   create_table "topics", force: :cascade do |t|
     t.string   "name"
@@ -66,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150403135254) do
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
-    t.string   "name"
+    t.string   "name",                   default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
