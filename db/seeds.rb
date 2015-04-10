@@ -31,7 +31,7 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  # The `save` method then saves this User to the database.
 
  # Create Topics
- 15.times do
+ 61.times do
    Topic.create!(
      name:         Faker::Lorem.sentence,
      description:  Faker::Lorem.paragraph
@@ -42,7 +42,7 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  # Create Posts
 
 
- 50.times do
+ 150.times do
 
    Post.create!(
     user:   users.sample,
