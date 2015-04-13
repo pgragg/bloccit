@@ -15,14 +15,14 @@ def will_paginate(collection) #Believe it or not, this behemoth works. Unfortuna
   <ul class="pagination"> 
   <li> 
   <a href="?page='
-  prev_page = :page
+  prev_page = 1
   after_prev_button = '" aria-label="Previous">
         <span aria-hidden="true">&laquo;</span>
       </a>
     </li>' 
   next_button = ' <li>
       <a href="?page='
-  next_page = #collection.page+1 doesn't work... :( 
+  next_page = 2#collection.page+1 doesn't work... :( 
   after_next_button = '" aria-label="Next">
         <span aria-hidden="true">&raquo;</span>
       </a>
