@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :topics do
      resources :posts, except: [:index] do
       #get '/comments#show', to: redirect('/topics#index')
-      get '/comments/*number', to: 'topics#index'
+      #get '/comments/*number', to: 'topics#index'
       #http://localhost:3000/topics/1/posts/22/comments/2
       resources :comments, except: [:index]
       resources :summaries 

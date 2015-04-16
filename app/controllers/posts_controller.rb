@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def new
-    
     @topic = Topic.find(params[:topic_id])
      #authorize method comes from Pundit in the ApplicationController. 
     @post = Post.new

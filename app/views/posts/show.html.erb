@@ -34,9 +34,15 @@
 <div class = "row"> 
   
   <% @comments.each do |comment| %>
-  <%= comment.body %> <!-- Undefined method comment for post.  -->
+  <h4> comment from <%= comment.user.name%> </h4>
+  <%= comment.body %>
+  <br> <!-- Undefined method comment for post.  -->
+ <!--   -->
 
   <%end%>
+<%if policy(Comment.new).create?%> 
+<%= link_to "Make a Comment", new_topic_post_comment_path(@topic,@post,@comment), class: 'btn btn-warning' %> 
+<% end %>
 
 </div> 
 
