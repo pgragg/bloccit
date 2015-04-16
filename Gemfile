@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 #Letter opener : for quick emails. 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+
 ruby '2.1.2'
 gem 'rails', '4.2.0'
 # Use SCSS for stylesheets
@@ -40,6 +41,7 @@ gem 'figaro', '1.0'
 gem 'carrierwave'
 gem 'mini_magick'
 gem 'fog'
+gem 'will_paginate'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

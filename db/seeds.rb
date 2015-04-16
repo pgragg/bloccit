@@ -110,6 +110,7 @@ admin = User.new(
  population = User.all
  
  puts "Seed finished"
+puts "#{Topic.count} topics created"
  puts "#{Post.count} posts created"
  puts "#{Comment.count} comments created"
  puts "#{Advertisement.count} ads created"

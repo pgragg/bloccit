@@ -1,7 +1,9 @@
 class TopicsController < ApplicationController
+
   def index
     @topics = Topic.paginate(page: params[:page], per_page: 6)
     authorize @topics 
+    # @current_page = (params[:offset].to_i/PER_PAGE).to_i 
   end
 
   def new
@@ -10,6 +12,7 @@ class TopicsController < ApplicationController
   end
 
   def show
+
     @topic = Topic.find(params[:id])
     authorize @topic 
     @posts = @topic.posts.paginate(page: params[:page], per_page: 6)

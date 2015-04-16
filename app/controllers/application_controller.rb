@@ -2,9 +2,10 @@ class ApplicationController < ActionController::Base
   include Pundit 
   #before_action :flash_attack
 
-
    protect_from_forgery with: :exception
    before_action :configure_permitted_parameters, if: :devise_controller?
+
+
  
    protected
  
@@ -12,6 +13,11 @@ class ApplicationController < ActionController::Base
      devise_parameter_sanitizer.for(:sign_up) << :name
    end
 
+
+    # def paginate(collection, offset) #Because collection is an AR object. 
+    #     @items = collection.length
+    #     results = collection.offset(offset).limit(PER_PAGE)
+    # end
 
   rescue_from Pundit::NotAuthorizedError do |exception| 
     redirect_to root_url, alert: exception.message 
