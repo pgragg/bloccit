@@ -31,3 +31,19 @@
   </div>
 </div>
 
+<div class = "row"> 
+  
+  <% @comments.each do |comment| %>
+  <%= comment.body %> <!-- Undefined method comment for post.  -->
+
+  <%end%>
+
+</div> 
+
+  <div class="col-md-4">
+    <% if policy(Topic.new).create? %>
+      <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
+    <% end %>
+  </div>
+</div>
+

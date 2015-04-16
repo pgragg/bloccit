@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @topic = Topic.find(params[:topic_id]) #Why do we find the Post by :id and the Topic by :topic_id? That's what our rake routes output says it's expecting: /topics/:topic_id/posts/:id/edit. Rails conventions make the params hash consistent with these expectations.
     @summary = @post.summary
+    @comments = @post.comments
   end
 
   def new
