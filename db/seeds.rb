@@ -64,7 +64,7 @@ a = Advertisement.find_or_create_by(title: 'You gotta buy dis nao', copy: 'Uniqu
  summaries = Summary.all
  
  # Create Comments
- 10.times do
+ 1000.times do
    Comment.create!(
      user: users.sample,
      post: posts.sample,

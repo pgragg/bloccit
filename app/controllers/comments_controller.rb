@@ -4,22 +4,24 @@ class CommentsController < ApplicationController
     @topic = Topic.find(params[:topic_id])
     @comment = Comment.find(params[:id])
     @post = Post.find(params[:post_id])
+    authorize @comment 
   end
 
   def new
     @topic = Topic.find(params[:topic_id])
     @post = Post.find(params[:post_id])
     @comment = Comment.new
+    authorize @comment 
   end
 
   def create
    @topic = Topic.find(params[:topic_id])
    @post = Post.find(params[:post_id])
-   
    @comment = @post.comments.build(comment_params)
    @comment.user = current_user
    # @comment.topic = @topic  
    # @comment.post = @post 
+   authorize @comment 
    if @comment.save
      flash[:notice] = "Thanks for your comment, #{@comment.user.name}!"
      redirect_to [@topic, @post]
@@ -34,6 +36,7 @@ class CommentsController < ApplicationController
   @topic = Topic.find(params[:topic_id])
   @comment = Comment.find(params[:id])
   @post = Post.find(params[:post_id])
+  authorize @comment 
   if @comment.update_attributes(params.require(:comment).permit(:body))
     flash[:notice] = "Comment was updated."
     redirect_to [@topic, @post]
