@@ -1,5 +1,15 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-2">
+    <% if policy(Post.new).edit? %> 
+  <%= link_to "Edit post", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %> 
+  <% end %> 
+  </div>
+  <div class="col-md-2">
+    <% if policy(@post).destroy? %>
+       <%= link_to "Delete Post", [@topic, @post], method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this post?' } %>
+  <% end %>
+  </div>
+  <div class="col-md-8">
     <h1><%= @post.markdown_title %></h1>
   </div>
 </div>
@@ -13,12 +23,19 @@
     <h6> submitted <%= time_ago_in_words(@post.created_at) %> ago by
        <%= @post.user.name %></h6>
   </div>
-  <% if policy(Post.new).edit? %> 
-  <%= link_to "Edit post", edit_topic_post_path(@topic,@post), class: 'btn btn-success' %> 
-  <% end %> 
+  
 </div>
 <div class="row">
-  <div class="col-md-4"> <!-- Summary Button Begins-->
+  <div class="col-md-4"> 
+    
+    
+  </div>
+</div>
+
+<div class = "row"> 
+
+
+  <div class="col-md-2"> <!-- Summary Button Begins-->
     <% if @summary != nil %>
       <p>Summary: <%= @post.summary.title %></p>
       <% if policy(Summary.new).edit? %> 
@@ -26,33 +43,32 @@
       <% end %> 
     <% else %>
       <% if policy(Summary.new).new? %>
-        <%= link_to "Summarize this post", new_topic_post_summary_path(@topic,@post,@summary), class: "btn btn-success" %> 
+        <%= link_to "Summarize", new_topic_post_summary_path(@topic,@post,@summary), class: "btn btn-success" %> 
       <% end %> 
-    <% end %> <!-- Summary Button Ends.  -->
+    <% end %> 
+  </div><!-- Summary Button Ends.  -->
+  <div class="col-md-2">
+    <%if policy(Comment.new).create?%> 
+      <%= link_to "Comment", new_topic_post_comment_path(@topic,@post,@comment), class: 'btn btn-warning' %> 
+    <% end %>
   </div>
-</div>
-
-<div class = "row"> 
-<%if policy(Comment.new).create?%> 
-<%= link_to "Make a Comment", new_topic_post_comment_path(@topic,@post,@comment), class: 'btn btn-warning' %> 
-<% end %>
 
 </div> 
 
+
+<div class = "row"> 
+
+
   <div class="col-md-4">
-    <% if policy(Topic.new).create? %>
-      <%= link_to "New Topic", new_topic_path, class: 'btn btn-success' %>
-    <% end %>
   </div>
   <div class="col-md-8">
   <% if policy(Comment.new).show?%>
     <% @comments.each do |comment| %>
-    <h4 class="textcenter"> <%= comment.user.name%> says: </h4>
-    <%= comment.body %>
-    <br> <!-- Undefined method comment for post.  -->
-   <!--   -->
+      <%= render partial: 'comment', locals: { topic: @topic, post: @post, comment: comment} %>
   <%end%>
   <%end%>
   </div>
+</div>
+
 </div>
 

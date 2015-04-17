@@ -7,10 +7,8 @@ Rails.application.routes.draw do
 
   resources :topics do
      resources :posts, except: [:index] do
-      #get '/comments#show', to: redirect('/topics#index')
-      #get '/comments/*number', to: 'topics#index'
-      #http://localhost:3000/topics/1/posts/22/comments/2
-      resources :comments, except: [:index]
+      #TO DO: redirect faulty pages back to the topics page. 
+      resources :comments, except: [:index] #We used delete and destroy interchangeably in this checkpoint. It's best practice to use destroy when referring to a controller action or resource. Use delete when referring to the Active Record method and removing a record from the database.
       resources :summaries 
     end 
    end
