@@ -5,13 +5,16 @@ Rails.application.routes.draw do
   resources :users, only: [:update]
   resources :advertisements 
 
-  resources :topics do
-     resources :posts, except: [:index] do
-      #TO DO: redirect faulty pages back to the topics page. 
-      resources :comments, except: [:index] #We used delete and destroy interchangeably in this checkpoint. It's best practice to use destroy when referring to a controller action or resource. Use delete when referring to the Active Record method and removing a record from the database.
-      resources :summaries 
-    end 
+
+   resources :topics do
+     resources :posts, except: [:index]
    end
+ 
+   resources :posts, only: [] do
+     resources :comments, only: [:new, :create, :destroy]
+     resources :summaries
+   end
+
   get 'contact' => 'welcome#contact' 
   get 'about' => 'welcome#about' # allowing a user to type /about rather than /welcome/about.
 

@@ -39,17 +39,17 @@
     <% if @summary != nil %>
       <p>Summary: <%= @post.summary.title %></p>
       <% if policy(Summary.new).edit? %> 
-        <%= link_to "Edit summary", edit_topic_post_summary_path(@topic,@post,@summary), class: "btn btn-success" %> 
+        <%= link_to "Edit summary", edit_post_summary_path(@post,@summary), class: "btn btn-success" %> 
       <% end %> 
     <% else %>
       <% if policy(Summary.new).new? %>
-        <%= link_to "Summarize", new_topic_post_summary_path(@topic,@post,@summary), class: "btn btn-success" %> 
+        <%= link_to "Summarize", new_post_summary_path(@post,@summary), class: "btn btn-success" %> 
       <% end %> 
     <% end %> 
   </div><!-- Summary Button Ends.  -->
   <div class="col-md-2">
     <%if policy(Comment.new).create?%> 
-      <%= link_to "Comment", new_topic_post_comment_path(@topic,@post,@comment), class: 'btn btn-warning' %> 
+      <%= link_to "Comment", new_post_comment_path(@post,@comment), class: 'btn btn-warning' %> 
     <% end %>
   </div>
 
@@ -64,7 +64,7 @@
   <div class="col-md-8">
   <% if policy(Comment.new).show?%>
     <% @comments.each do |comment| %>
-      <%= render partial: 'comment', locals: { topic: @topic, post: @post, comment: comment} %>
+      <%= render partial: 'comment', locals: {post: @post, comment: comment} %>
   <%end%>
   <%end%>
   </div>
