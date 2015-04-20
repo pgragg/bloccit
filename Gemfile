@@ -29,6 +29,10 @@ group :development do
   gem 'better_errors'
 end
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0'
+end
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 gem 'faker'
