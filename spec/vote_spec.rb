@@ -1,9 +1,16 @@
-describe Vote do 
-  describe "validations" do 
-    describe "value validation" do
-      it "only allows -1 or 1 as values" do
-        expect(@post.vote == -1 || 1).to eq(true)
+require 'rails_helper'
+  describe Vote do 
+    describe "validations" do 
+      before do
+       post = Post.new
+       @invalid_vote = post.votes.build(value: 21) 
       end
-    end 
+ 
+ 
+      describe "value validation" do
+        it "only allows -1 or 1 as values" do
+          expect(@invalid_vote.valid?).to eq(false)
+        end
+      end 
+    end
   end
-end
