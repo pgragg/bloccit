@@ -1,4 +1,7 @@
 class Post < ActiveRecord::Base
+  after_create :create_vote
+
+
   has_many :comments, dependent: :destroy
   has_many :votes, dependent: :destroy 
   has_one :summary, dependent: :destroy 
@@ -42,13 +45,15 @@ class Post < ActiveRecord::Base
     age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
   end 
 
-
   def update_rank
    
    new_rank = points - age/1000  #Higher ranked posts go first. This ranking makes no sense.
    update_attribute(:rank, new_rank)
   end
 
+  def create_vote
+    user.votes.create(post: self, value: 1)
+  end 
   private 
   
   def render_as_markdown(markdown)
