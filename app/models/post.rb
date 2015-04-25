@@ -1,5 +1,4 @@
 class Post < ActiveRecord::Base
-  after_create :create_vote
 
 
   has_many :comments, dependent: :destroy
@@ -11,8 +10,8 @@ class Post < ActiveRecord::Base
 
   validates :title, length: { minimum: 5 }, presence: true
   validates :body, length: { minimum: 20 }, presence: true
-  # validates :topic, presence: true #This is throwing an error, which is odd.
-  # validates :user, presence: true
+  validates :topic, presence: true #This is throwing an error, which is odd.
+  validates :user, presence: true
 
 
   #default_scope { order('created_at DESC') }
@@ -21,6 +20,8 @@ class Post < ActiveRecord::Base
   scope :ordered_by_title,              -> { order('title ASC') }
 
   mount_uploader :image, ImageUploader
+
+
 
   def markdown_title
     render_as_markdown(title)
@@ -54,6 +55,8 @@ class Post < ActiveRecord::Base
   def create_vote
     user.votes.create(post: self, value: 1)
   end 
+
+
   private 
   
   def render_as_markdown(markdown)
