@@ -42,17 +42,13 @@ class PostsController < ApplicationController
   end 
 
  def create
-
    @topic = Topic.find(params[:topic_id])
-
-   #@post = Post.new(params.require(:post).permit(:title, :body))
    @post = current_user.posts.build(post_params)
    @post.topic = @topic 
    authorize @post 
-   if @post.save
-     @post.create_vote
-     flash[:notice] = "Post was saved with an upboat."
-     redirect_to [@topic, @post]
+   if @post.save_with_initial_vote
+       flash[:notice] = "Post was saved with an upboat."
+       redirect_to [@topic, @post]
    else
      flash[:error] = "There was an error saving the post. Please try again."
      render :new
