@@ -10,19 +10,23 @@
  
    describe "#favorited(post)" do
     before do
-       post = Post.new
-       user = User.new(role: "admin")
+       @post = associated_post
+       @user = authenticated_user
+       @other_post = associated_post
     end
 
      it "returns `nil` if the user has not favorited the post" do
+      (@user.favorited(@post)).should eq(nil) #Should is deprecated, but expect and .to were not working with nil objects. 
      end
  
      it "returns the appropriate favorite if it exists" do
-
+      favorite = Favorite.create(post_id: @post.id, user_id: @user.id)
+      (@user.favorited(@post)).should eq(favorite)
      end
 
      it "returns `nil` if the user has favorited another post" do
-      
+       favorite = Favorite.create(post_id: @other_post.id, user_id: @user.id)
+       (@user.favorited(@post)).should be_nil
      end
 
    end
