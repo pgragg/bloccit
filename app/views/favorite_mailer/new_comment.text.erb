@@ -1,0 +1,10 @@
+New comment to "<%= @post.title %>"
+<%= "=" * (@post.title.length + 12) %>
+
+By: <%= @comment.user.name %>
+
+<%= @comment.body %>
+
+Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "comment-#{@comment.id}") %>
+
+<!-- The anchor: option: This adds custom parameters to our URL. In this case, because we used the keyword anchor the URL will look like: "http://myapp.com/topics/3/posts/5#comment-21". This allows us to move the user directly to the comment. -->

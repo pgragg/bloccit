@@ -1,0 +1,14 @@
+<% if policy(Favorite.new).create? %>
+  <div class="favorite">
+    <% if favorite = current_user.favorited(post) %>
+      <%= link_to [post, favorite], class: 'btn btn-danger', method: :delete do %>
+        <i class="glyphicon glyphicon-star-empty"> </i>&nbsp; Unfavorite
+      <% end %>
+    <% else %>
+      <%= link_to [post, Favorite.new], class: 'btn btn-primary', method: :post do %>
+        <i class="glyphicon glyphicon-star"> </i>&nbsp; Favorite
+      <% end %>
+    <% end %>
+  </div>
+<% end %>
+<!--  It usually isn't good practice to initialize a new model instance (Favorite.new) in the view, but we are making an exception here so we don't have to modify the posts_controller and posts#show view. -->
