@@ -10,6 +10,14 @@ module TestFactories
     post = Post.create(post_options)
     post
   end 
+  def valid_topic(options={})
+    topic_options = {
+      name: 'Topic titles can be short',
+      description: 'Topic bodies must be pretty long AND I am not sure why not working',
+    }.merge(options)
+    topic = Topic.create(topic_options)
+    topic
+  end 
   def authenticated_user(options={})
     user_options = {email: "email#{rand}@fake.com", password: 'password', role: 'admin'}.merge(options)
     user = User.new(user_options)

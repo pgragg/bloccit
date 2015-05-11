@@ -5,6 +5,8 @@ class Topic < ActiveRecord::Base
   mount_uploader :image, ImageUploader
 
   scope :visible_to, -> (user) { user ? all : where(public: true) } 
+  scope :publicly_viewable, -> {where(public: true) } 
+  scope :privately_viewable, -> {where(public: false) } 
   # Calling the scope invokes the result of its lambda on the collection 
   # or class on which it was originally called. 
   # So this scope returns the equivalent of topic_collection.all 
