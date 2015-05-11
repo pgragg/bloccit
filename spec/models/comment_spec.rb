@@ -16,11 +16,11 @@
      it "sends an email to users who have favorited the post" do
        favorite = @user.favorites.create(post: @post)
  
-       allow( FavoriteMailer )
-         .to receive(:new_comment)
-         .with(@user, @post, @comment)
-         .and_return( double(deliver_now: true) )
-
+       allow( FavoriteMailer ) #Sets up the mock. Allow really means "create this mock."
+         .to receive(:new_comment) #Mocking, not stubbing. Defines what method we're looking for. 
+         .with(@user, @post, @comment) #Looks for parameters to be passed to new_comment. 
+         .and_return( double(deliver_now: true) ) #Looks for parameters to be passed to new_comment.
+          #Why are we using a double here? Doubles are used just for testing. 
          expect( FavoriteMailer )
            .to receive(:new_comment)
  

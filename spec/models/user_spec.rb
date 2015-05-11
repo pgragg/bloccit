@@ -16,17 +16,17 @@
     end
 
      it "returns `nil` if the user has not favorited the post" do
-      (@user.favorited(@post)).should eq(nil) #Should is deprecated, but expect and .to were not working with nil objects. 
+      expect(@user.favorited(@post)).to be_nil #Should is deprecated, but expect and .to were not working with nil objects. 
      end
  
      it "returns the appropriate favorite if it exists" do
       favorite = Favorite.create(post_id: @post.id, user_id: @user.id)
-      (@user.favorited(@post)).should eq(favorite)
+      expect(@user.favorited(@post)).to eq(favorite)
      end
 
      it "returns `nil` if the user has favorited another post" do
        favorite = Favorite.create(post_id: @other_post.id, user_id: @user.id)
-       (@user.favorited(@post)).should be_nil
+       expect(@user.favorited(@post)).to be_nil
      end
 
    end

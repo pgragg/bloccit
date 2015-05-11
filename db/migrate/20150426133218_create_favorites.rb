@@ -6,3 +6,6 @@ class CreateFavorites < ActiveRecord::Migration
     end
   end
 end
+
+
+#This is called a "join table."
