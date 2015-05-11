@@ -1,9 +1,10 @@
 class TopicsController < ApplicationController
 
   def index
-    @topics = Topic.paginate(page: params[:page], per_page: 6)
+    @topics = Topic.visible_to(current_user).paginate(page: params[:page], per_page: 10)
     authorize @topics 
     # @current_page = (params[:offset].to_i/PER_PAGE).to_i 
+    #the scope returns an Active Record relation.
   end
 
   def new

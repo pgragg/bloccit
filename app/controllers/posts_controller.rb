@@ -12,6 +12,7 @@ class PostsController < ApplicationController
     @summary = @post.summary
     @comments = @post.comments
     authorize @comments
+    authorize @topic
 
   end
 
