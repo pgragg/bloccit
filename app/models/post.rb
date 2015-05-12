@@ -35,16 +35,17 @@ class Post < ActiveRecord::Base
   def up_votes
     votes.where(value: 1).count
   end
+
   def down_votes
     votes.where(value: -1).count
   end
+
   def points
     up_votes - down_votes 
-
   end
 
   def age
-    age_in_days = (created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
+    age_in_days = (self.created_at - Time.new(1970,1,1)) / (60 * 60 * 24) # 1 day in seconds
   end 
 
   def update_rank

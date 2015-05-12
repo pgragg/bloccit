@@ -21,4 +21,9 @@ class User < ActiveRecord::Base
   def favorited(post)
     favorites.where(post_id: post.id).first
   end
+  def voted(post)
+    votes.where(post_id: post.id).first 
+     #  Like the favorited method, voted should return whether the user has any votes 
+     #for the post. If yes, it should return the vote; if not, nil:
+   end
 end
