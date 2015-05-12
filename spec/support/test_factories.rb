@@ -1,5 +1,5 @@
 module TestFactories
-  
+    
   def associated_post(options={})
     post_options = {
       title: 'Post titles can be short',
@@ -27,6 +27,16 @@ module TestFactories
   end
 
 
+end 
+
+module Warden #Won't work with controller tests because it isn't run for controllers. 
+  include Warden::Test::Helpers
+  Warden.test_mode!
+  RSpec.configure do |config|
+    config.after :each do
+      Warden.test_reset!
+    end
+  end
 end 
 
   
