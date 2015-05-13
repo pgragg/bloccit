@@ -6,7 +6,8 @@ source 'https://rubygems.org'
 ruby '2.1.2'
 gem 'rails', '4.2.0'
 gem 'newrelic_rpm'
-gem 'puma'
+gem 'puma', group: :production
+gem 'thin', group: :development
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
