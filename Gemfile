@@ -8,6 +8,7 @@ gem 'rails', '4.2.0'
 gem 'newrelic_rpm'
 gem 'puma', group: :production
 gem 'thin', group: :development
+gem 'factory_girl_rails', '~> 4.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
