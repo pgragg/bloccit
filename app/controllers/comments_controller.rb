@@ -48,12 +48,18 @@ class CommentsController < ApplicationController
 
   if @comment.destroy
    flash[:notice] = "\"#{@comment.body}\" was deleted successfully."
-   redirect_to [@post.topic, @post]
+   # redirect_to [@post.topic, @post]
   else
    flash[:error] = "There was an error deleting the comment."
-   render :delete
+   # render :delete
   end
+  respond_to do |format|
+    format.html
+    format.js
+  end
+
  end 
+ 
 
  private
 
