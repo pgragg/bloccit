@@ -4,7 +4,8 @@ class Comment < ActiveRecord::Base
   belongs_to :topic 
   #validates :user, presence: true
 
-  default_scope { order('created_at DESC') }
+  #default_scope { order('created_at DESC') }
+  default_scope { order('updated_at ASC') }
 
   after_create :send_favorite_emails
   
